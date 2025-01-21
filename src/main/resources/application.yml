@@ -1,9 +1,11 @@
 spring:
+  profiles:
+    include: secret # 파일 인식
+#    active: dev # 파일 적용
   datasource:
-    url: jdbc:h2:tcp://localhost/~/springbootDeveloper
-    username: sa
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
     password:
-    driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
