@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PostList</title>
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- bootstrap js -->
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="p-5 mb-5 text-center bg-light">
+    <h1 class="mb-3">Blog</h1>
+    <h4 class="mb-3">환영합니다.</h4>
+</div>
+
+<div class="container">
+    <button type="button" id="create-btn" th:onclick="|location.href='@{/form}'|" class="btn btn-secondary btn-sm mb-3">글 등록</button>
+    <div class="row" th:each="post : ${postList}">
+        <div class="card">
+            <div class="card-header" th:text="${post.id}"></div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${post.title}"></h5>
+                <p class="card-text" th:text="${post.content}"></p>
+                <p class="card-text" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                <p class="card-text" th:text="${#temporals.format(post.lastModifiedAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+                <a th:href="@{/post/{id}(id=${post.id})}" class="btn btn-primary">보러 가기</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <nav>
+        <ul class="pagination justify-content-center">
+            <!-- Previous Page Button -->
+            <li class="page-item" th:classappend="${page.hasPrevious()} ? '' : 'disabled'">
+                <a class="page-link" th:href="@{/post(page=${page.number - 1})}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+
+            <!-- Page Numbers -->
+            <li class="page-item" th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+                th:classappend="${page.number == i} ? 'active' : ''">
+                <a class="page-link" th:href="@{/post(page=${i})}" th:text="${i + 1}"></a>
+            </li>
+
+            <!-- Next Page Button -->
+            <li class="page-item" th:classappend="${page.hasNext()} ? '' : 'disabled'">
+                <a class="page-link" th:href="@{/post(page=${page.number + 1})}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<!-- bootstrap js -->
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

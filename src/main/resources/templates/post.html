@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>PostList</title>
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="p-5 mb-5 text-center bg-light">
+  <h1 class="mb-3">Blog</h1>
+  <h4 class="mb-3">환영합니다.</h4>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <article>
+        <input type="hidden" id="post-id" th:value="${post.id}">
+        <header class="mb-4">
+          <h1 class="card-title" th:text="${post.title}"></h1>
+          <div class="text-muted fst-italic mb-2" th:text="|Posted on ${#temporals.format(post.lastModifiedAt, 'yyyy-MM-dd HH:mm:ss')}|"></div>
+        </header>
+        <section class="mb-5">
+          <p class="fs-5 mb-4" th:text="${post.content}"></p>
+        </section>
+        <button type="button" id="modify-btn" th:onclick="|location.href='@{/form?id={postId}(postId=${post.id})}'|" class="btn btn-primary btn-sm">수정</button>
+        <button type="button" id="delete-btn" class="btn btn-primary btn-sm">삭제</button>
+      </article>
+    </div>
+  </div>
+</div>
+
+<!-- bootstrap js -->
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/post.js"></script>
+</body>
+</html>
+
