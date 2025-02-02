@@ -28,6 +28,9 @@ out/
 ### secret 파일 ###
 /src/main/resources/application-secret.yml
 
+### JWT Secret ###
+/src/main/resources/application-jwt.yml
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

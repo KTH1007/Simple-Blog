@@ -20,3 +20,4 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
+    org.example.springbootdeveloper: debug # org.example.springbootdeveloper 패키지와 하위 모든 클래스에 대해 DEBUG 레벨을 활성화
