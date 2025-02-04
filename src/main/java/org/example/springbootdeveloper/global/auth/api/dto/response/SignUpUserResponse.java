@@ -1,4 +1,4 @@
-package org.example.springbootdeveloper.User.api.dto.response;
+package org.example.springbootdeveloper.global.auth.api.dto.response;
 
 import lombok.Builder;
 import org.example.springbootdeveloper.User.domain.User;

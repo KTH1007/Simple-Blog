@@ -2,14 +2,12 @@ package org.example.springbootdeveloper.User.application;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.springbootdeveloper.User.api.dto.request.LoginRequest;
-import org.example.springbootdeveloper.User.api.dto.request.SignUpUserRequest;
-import org.example.springbootdeveloper.User.api.dto.response.LoginResponse;
-import org.example.springbootdeveloper.User.api.dto.response.SignUpUserResponse;
 import org.example.springbootdeveloper.User.domain.Role;
 import org.example.springbootdeveloper.User.domain.User;
 import org.example.springbootdeveloper.User.domain.UserRepository;
 import org.example.springbootdeveloper.User.exception.NotFoundUserException;
+import org.example.springbootdeveloper.global.auth.api.dto.request.SignUpUserRequest;
+import org.example.springbootdeveloper.global.auth.api.dto.response.SignUpUserResponse;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,17 +43,17 @@ public class UserService {
         return SignUpUserResponse.toDto(user);
     }
 
-    @Transactional
-    public LoginResponse login(LoginRequest loginRequest) {
-        log.debug("password -> {}", loginRequest.password());
-        User user = userRepository.findByEmail(loginRequest.email()).orElseThrow(NotFoundUserException::new);
-
-        if (!bCryptPasswordEncoder.matches(loginRequest.password(), user.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
-        }
-
-        return new LoginResponse(user.getEmail());
-    }
+//    @Transactional
+//    public LoginResponse login(LoginRequest loginRequest) {
+//        log.debug("password -> {}", loginRequest.password());
+//        User user = userRepository.findByEmail(loginRequest.email()).orElseThrow(NotFoundUserException::new);
+//
+//        if (!bCryptPasswordEncoder.matches(loginRequest.password(), user.getPassword())) {
+//            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+//        }
+//
+//        return new LoginResponse(user.getEmail());
+//    }
 
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(NotFoundUserException::new);

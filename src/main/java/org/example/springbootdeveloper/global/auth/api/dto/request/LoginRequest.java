@@ -1,4 +1,4 @@
-package org.example.springbootdeveloper.User.api.dto.request;
+package org.example.springbootdeveloper.global.auth.api.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

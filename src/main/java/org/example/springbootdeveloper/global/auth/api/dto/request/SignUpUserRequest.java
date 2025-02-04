@@ -1,7 +1,8 @@
-package org.example.springbootdeveloper.User.api.dto.request;
+package org.example.springbootdeveloper.global.auth.api.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import org.example.springbootdeveloper.User.domain.Role;
 import org.example.springbootdeveloper.User.domain.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,7 +14,7 @@ public record SignUpUserRequest(
         String password,
         @NotEmpty
         String nickname,
-        @NotEmpty
+        @NotNull
         int age
 ) {
     public User toEntity(BCryptPasswordEncoder bCryptPasswordEncoder) {
