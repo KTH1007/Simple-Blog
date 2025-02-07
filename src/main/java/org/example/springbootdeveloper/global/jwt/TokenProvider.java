@@ -76,4 +76,8 @@ public class TokenProvider {
     public long getRefreshTokenExpiration() {
         return refreshTokenExpiration;
     }
+
+    public long getAccessTokenExpiration() {
+        return accessTokenExpiration;
+    }
 }

@@ -1,5 +1,6 @@
 package org.example.springbootdeveloper.global.auth.api.dto.request;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +13,7 @@ public record SignUpUserRequest(
         String email,
         @NotEmpty
         String password,
-        @NotEmpty
+        @NotEmpty @Column(unique = true)
         String nickname,
         @NotNull
         int age

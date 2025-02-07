@@ -1,6 +1,6 @@
 spring:
   profiles:
-    include: secret, jwt # 파일 인식
+    include: secret, jwt, oauth2 # 파일 인식
 #    active: dev # 파일 적용
   datasource:
     url: ${spring.datasource.url}
