@@ -6,12 +6,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.springbootdeveloper.article.api.dto.request.SavePostRequest;
+import org.example.springbootdeveloper.global.auditing.BaseEntity;
 import org.example.springbootdeveloper.global.auditing.BaseTimeEntity;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Post extends BaseTimeEntity {
+public class Post extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

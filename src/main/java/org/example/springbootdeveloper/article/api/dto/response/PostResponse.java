@@ -11,7 +11,9 @@ public record PostResponse(
         String title,
         String content,
         LocalDateTime createdAt,
-        LocalDateTime lastModifiedAt
+        LocalDateTime lastModifiedAt,
+        Long createdBy,
+        Long lastModifiedBy
 ) {
     public static PostResponse toDto(Post post) {
         return PostResponse.builder()
@@ -20,6 +22,8 @@ public record PostResponse(
                 .content(post.getContent())
                 .createdAt(post.getCreatedAt())
                 .lastModifiedAt(post.getLastModifiedAt())
+                .createdBy(post.getCreatedBy())
+                .lastModifiedBy(post.getLastModifiedBy())
                 .build();
     }
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.springbootdeveloper.User.domain.User;
 import org.example.springbootdeveloper.User.domain.UserRepository;
 import org.example.springbootdeveloper.User.exception.NotFoundUserException;
+import org.example.springbootdeveloper.global.auditing.CustomUserDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,11 @@ public class UserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) {
         User user = userRepository.findByEmail(email).orElseThrow(NotFoundUserException::new);
-
-        return org.springframework.security.core.userdetails.User.builder()
-                .username(user.getEmail())
-                .password(user.getPassword())
-                .roles(user.getRole().name())
-                .build();
+        return new CustomUserDetails(
+                user.getId(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getAuthorities()
+        );
     }
 }

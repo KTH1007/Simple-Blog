@@ -15,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -27,6 +28,7 @@ public class WebSecurityConfig {
     private final TokenProvider tokenProvider;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
     private final CustomOAuth2UserService customOAuth2UserService;
+    private final UserDetailsService userDetailsService;
 
     // Spring Security 기능 비활성화
     @Bean
@@ -58,15 +60,9 @@ public class WebSecurityConfig {
                 .oauth2Login(oauth2 -> oauth2
                         .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
                         .successHandler(oAuth2SuccessHandler))
-                .addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtAuthenticationFilter(tokenProvider, userDetailsService), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
-    // 패스워드 인코더로 사용할 빈 등록
-//    @Bean
-//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
     // AuthenticationManager 빈 등록
     @Bean
