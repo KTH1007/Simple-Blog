@@ -5,7 +5,7 @@ spring:
   datasource:
     url: ${spring.datasource.url}
     username: ${spring.datasource.username}
-    password:
+    password: ${spring.datasource.password}
 
   jpa:
     hibernate:
@@ -21,3 +21,5 @@ logging:
   level:
     org.hibernate.SQL: debug
     org.example.springbootdeveloper: debug # org.example.springbootdeveloper 패키지와 하위 모든 클래스에 대해 DEBUG 레벨을 활성화
+server:
+  port: 5000

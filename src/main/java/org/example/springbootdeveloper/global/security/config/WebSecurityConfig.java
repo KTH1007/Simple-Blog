@@ -31,12 +31,12 @@ public class WebSecurityConfig {
     private final UserDetailsService userDetailsService;
 
     // Spring Security 기능 비활성화
-    @Bean
-    public WebSecurityCustomizer configure() {
-        return (web) -> web.ignoring()
-                .requestMatchers(PathRequest.toH2Console())
-                .requestMatchers(new AntPathRequestMatcher("/static/**"));
-    }
+//    @Bean
+//    public WebSecurityCustomizer configure() {
+//        return (web) -> web.ignoring()
+//                .requestMatchers(PathRequest.toH2Console())
+//                .requestMatchers(new AntPathRequestMatcher("/static/**"));
+//    }
 
     // 특정 HTTP 요청에 대한 웹 기반 보안 구성
     @Bean
